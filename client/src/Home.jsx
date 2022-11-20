@@ -23,7 +23,7 @@ export const Home = () => {
           <Link
             style={{ textDecoration: "none" }}
             className="text-light"
-            to="/"
+            to="/create-user"
           >
             Create User
           </Link>

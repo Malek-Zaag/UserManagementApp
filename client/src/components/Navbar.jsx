@@ -41,7 +41,7 @@ export function Navbar() {
           <Link
             style={{ textDecoration: "none" }}
             className="text-secondary"
-            to="/"
+            to="/create-user"
           >
             Create User
           </Link>
