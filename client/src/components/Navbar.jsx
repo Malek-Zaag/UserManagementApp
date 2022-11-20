@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 export function Navbar() {
+  const logout = () => {};
   return (
     <div
       className="text-bg-dark p-1 text-secondary fw-semibold"
@@ -65,13 +66,13 @@ export function Navbar() {
       >
         <div className="px-3 fs-5">My Name</div>
         <div className="px-3 fs-5">
-          <Link
-            style={{ textDecoration: "none" }}
-            className="text-secondary"
-            to="/logout"
+          <button
+            type="button"
+            className="btn btn-dark text-secondary fs-5 fw-semibold"
+            onClick={logout}
           >
             Logout
-          </Link>
+          </button>
         </div>
       </div>
     </div>

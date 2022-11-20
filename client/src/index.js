@@ -6,6 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { Home } from "./Home";
 import { ListUsers } from "./ListUsers";
 import { CreateUser } from "./CreateUser";
+import { Login } from "./Login";
+import { Signup } from "./Signup";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,14 @@ const router = createBrowserRouter([
   {
     path: "/create-user",
     element: <CreateUser />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
