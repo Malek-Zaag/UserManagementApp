@@ -1,7 +1,40 @@
+import { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import "./index.css";
+import Config from "./config.js";
+
 export const ListUsers = () => {
+  const [users, setUsers] = useState([]);
+
+  const delete_user = (id) => {
+    const requestOptions = {
+      method: "DELETE",
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: id,
+      }),
+    };
+    fetch(`${Config.API}/api/delete-user`, requestOptions)
+      .then((response) => {})
+      .catch((err) => {});
+  };
+  useEffect(() => {
+    fetch(`${Config.API}/api/list-users`)
+      .then((response) => {
+        if (response.status === 200) {
+          setTimeout(() => {}, 1000);
+          response.json().then((res) => {
+            setUsers(res);
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div className="text-dark">
       <Navbar />
@@ -33,24 +66,27 @@ export const ListUsers = () => {
             <th>ssn</th>
             <th>action</th>
           </tr>
-          <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>
-              <button type="button" className="btn btn-danger">
-                Delete
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-          </tr>
+          {users.map((user) => {
+            return (
+              <tr key={user._id}>
+                <td>{user._id}</td>
+                <td>{user.username}</td>
+                <td>{user.firstname}</td>
+                <td>{user.lastname}</td>
+                <td>{user.email}</td>
+                <td>{user.ssn}</td>
+                <td key={user._id}>
+                  <button
+                    onClick={() => delete_user(user._id)}
+                    type="button"
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
         </table>
       </div>
     </div>

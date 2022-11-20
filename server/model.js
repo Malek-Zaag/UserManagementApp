@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     required: [true, "please enter a ssn"],
   },
   id: {
-    type: Number,
+    type: String,
   },
 });
 const adminSchema = new mongoose.Schema({
@@ -71,7 +71,7 @@ adminSchema.statics.login = async function (username, password) {
   const admin = await this.findOne({ username });
   if (admin) {
     var auth;
-    if (password === admin.password) auth = true;
+    if (md5(password) === admin.password) auth = true;
     else {
       console.log("wrong password");
       auth = false;

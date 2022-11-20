@@ -3,18 +3,20 @@ const { User, Admin } = require("./model");
 const jwt = require("jsonwebtoken");
 
 module.exports.createUser = (req, res) => {
-  const { username, firstname, lastname, email, ssn } = req.body;
-  console.log(username, firstname, lastname, email, ssn);
+  const { username, password, firstname, lastname, email, ssn, id } = req.body;
+  console.log(username, password, firstname, lastname, email, ssn, id);
   User.findOne({ email })
     .then((response) => {
       console.log(response);
       if (response == null) {
         User.create({
           username,
+          password,
           firstname,
           lastname,
           email,
           ssn,
+          id,
         })
           .then((response) => {
             res.send("User added successfully to database");
@@ -84,4 +86,14 @@ module.exports.logoutAdmin = (req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
   res.status(200);
   res.send("logout success  ");
+};
+
+module.exports.getUsers = async (req, res) => {
+  const users = await User.find();
+  res.status(200).send(users);
+};
+
+module.exports.deleteUser = async (req, res) => {
+  const user = await User.findByIdAndDelete(req.body.id);
+  res.status(200);
 };
