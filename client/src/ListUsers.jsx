@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import "./index.css";
 export const ListUsers = () => {
@@ -6,7 +7,15 @@ export const ListUsers = () => {
       <Navbar />
       <h1 style={{ textAlign: "center" }}>List Users</h1>
       <div style={{ textAlign: "end" }} className="m-5">
-        <button className="btn btn-primary">Create User</button>
+        <button className="btn btn-primary">
+          <Link
+            to="/create-user"
+            className="text-light"
+            style={{ textDecoration: "none" }}
+          >
+            Create User
+          </Link>
+        </button>
       </div>
       <div>
         <table

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 
 export const CreateUser = () => {
@@ -32,7 +33,13 @@ export const CreateUser = () => {
           Add
         </button>
         <button type="button" className="btn btn-danger mx-2">
-          Cancel
+          <Link
+            to="/list-users"
+            className="text-light"
+            style={{ textDecoration: "none" }}
+          >
+            Cancel
+          </Link>
         </button>
       </div>
     </div>

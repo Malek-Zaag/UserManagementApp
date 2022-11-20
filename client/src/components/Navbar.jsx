@@ -18,7 +18,15 @@ export function Navbar() {
         }}
         className="text-center"
       >
-        <h1 className="px-2">MK</h1>
+        <h1 className="px-2">
+          <Link
+            to="/"
+            className="text-secondary"
+            style={{ textDecoration: "none" }}
+          >
+            MK
+          </Link>
+        </h1>
         <div className="px-3 fs-5">
           <Link
             style={{ textDecoration: "none" }}
