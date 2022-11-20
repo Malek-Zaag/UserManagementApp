@@ -21,9 +21,7 @@ export const Login = () => {
       .then((response) => {
         if (response.status === 200) {
           setTimeout(() => {}, 1000);
-          console.log(response);
           response.json().then((res) => {
-            console.log(res);
             localStorage.setItem("id", res.id);
             localStorage.setItem("name", res.name);
             navigate("/");

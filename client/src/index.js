@@ -16,11 +16,7 @@ import { Signup } from "./Signup";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: localStorage.getItem("id") ? (
-      <Home />
-    ) : (
-      <Navigate replace to={"/login"} />
-    ),
+    element: localStorage.getItem("id") ? <Home /> : <Navigate to={"/login"} />,
   },
   {
     path: "/list-users",
