@@ -4,6 +4,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { Home } from "./Home";
+import { ListUsers } from "./ListUsers";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/list-users",
-    element: <div>list-users</div>,
+    element: <ListUsers />,
   },
 ]);
 
