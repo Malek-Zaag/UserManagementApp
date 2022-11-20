@@ -1,5 +1,6 @@
 require("./config");
 const { User, Admin } = require("./model");
+const jwt = require("jsonwebtoken");
 
 module.exports.createUser = (req, res) => {
   const { username, firstname, lastname, email, ssn } = req.body;
@@ -53,4 +54,34 @@ module.exports.createAdmin = (req, res) => {
       }
     })
     .catch((err) => console.log(err));
+};
+
+const maxAge = 700 * 24 * 60 * 60;
+const createToken = (id) => {
+  return jwt.sign({ id }, "secretkey", {
+    expiresIn: maxAge,
+  });
+};
+
+module.exports.loginAdmin = async (req, res) => {
+  const { username, password } = req.body;
+  const admin = await Admin.login(username, password);
+  if (admin) {
+    const token = createToken(admin._id);
+    res.cookie("jwt", token, { maxAge: maxAge * 1000 });
+    console.log(JSON.stringify({ id: admin._id.valueOf() }));
+    res
+      .status(200)
+      .send(JSON.stringify({ id: admin._id.valueOf(), name: admin.firstname }));
+    console.log("admin found");
+  } else {
+    res.status(400);
+    res.send("error happened");
+  }
+};
+
+module.exports.logoutAdmin = (req, res) => {
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.status(200);
+  res.send("logout success  ");
 };

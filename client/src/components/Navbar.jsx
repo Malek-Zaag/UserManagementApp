@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Navbar() {
-  const logout = () => {};
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("id");
+    localStorage.removeItem("name");
+    navigate("/login");
+  };
   return (
     <div
       className="text-bg-dark p-1 text-secondary fw-semibold"
@@ -64,7 +69,7 @@ export function Navbar() {
         }}
         className="text-center"
       >
-        <div className="px-3 fs-5">My Name</div>
+        <div className="px-3 fs-5">{localStorage.getItem("name")}</div>
         <div className="px-3 fs-5">
           <button
             type="button"

@@ -61,14 +61,24 @@ userSchema.pre("save", async function (next) {
   this.password = md5(this.password);
   next();
 });
-userSchema.statics.login = async function (email, password) {
-  const user = await this.findOne({ email });
-  if (user) {
+
+adminSchema.pre("save", async function (next) {
+  this.password = md5(this.password);
+  next();
+});
+
+adminSchema.statics.login = async function (username, password) {
+  const admin = await this.findOne({ username });
+  if (admin) {
     var auth;
-    if (md5(password) === user.password) auth = true;
-    else auth = false;
+    if (password === admin.password) auth = true;
+    else {
+      console.log("wrong password");
+      auth = false;
+    }
+
     if (auth) {
-      return user;
+      return admin;
     }
   }
 };
