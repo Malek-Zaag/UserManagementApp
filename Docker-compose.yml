@@ -1,0 +1,16 @@
+version: "3"
+services:
+  client:
+    image: client
+    ports:
+      - 80:80
+    environment:
+      - API=localhost
+      - PORT=3001
+  server:
+    image: server
+    ports:
+      - 3001:3001
+    environment:
+      - PORT=3001
+      - DB_URI=mongodb+srv://admin:admin@cluster0.gkmmv.mongodb.net/new_DB?retryWrites=true&w=majority

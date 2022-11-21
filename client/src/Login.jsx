@@ -17,7 +17,7 @@ export const Login = () => {
         password: passwordRef.current.value,
       }),
     };
-    fetch(`${Config.API}/api/login-admin`, requestOptions)
+    fetch(`${Config.API || ""}/api/login-admin`, requestOptions)
       .then((response) => {
         if (response.status === 200) {
           setTimeout(() => {}, 1000);

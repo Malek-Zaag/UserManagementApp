@@ -27,7 +27,7 @@ export const CreateUser = () => {
       }),
     };
     e.preventDefault();
-    fetch(`${Config.API}/api/create-user`, requestOptions)
+    fetch(`${Config.API || ""}/api/create-user `, requestOptions)
       .then((response) => {
         if (response.status === 200) {
           navigate("/list-users");

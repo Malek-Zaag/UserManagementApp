@@ -17,12 +17,12 @@ export const ListUsers = () => {
         id: id,
       }),
     };
-    fetch(`${Config.API}/api/delete-user`, requestOptions)
+    fetch(`${Config.API || ""}/api/delete-user`, requestOptions)
       .then((response) => {})
       .catch((err) => {});
   };
   useEffect(() => {
-    fetch(`${Config.API}/api/list-users`)
+    fetch(`${Config.API || ""}/api/list-users`)
       .then((response) => {
         if (response.status === 200) {
           setTimeout(() => {}, 1000);

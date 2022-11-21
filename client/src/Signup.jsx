@@ -23,7 +23,7 @@ export const Signup = () => {
       }),
     };
     e.preventDefault();
-    fetch(`${Config.API}/api/create-admin`, requestOptions)
+    fetch(`${Config.API || ""}/api/create-admin`, requestOptions)
       .then((response) => {
         if (response.status === 200) {
           navigate("/login");
